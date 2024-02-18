@@ -12,48 +12,69 @@
         android:id="@+id/editTextDenomination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Denomination_du_medicament"/>
+        android:hint="Denomination_du_medicament" />
 
     <!-- EditText for entering Forme_pharmaceutique -->
     <EditText
         android:id="@+id/editTextFormePharmaceutique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Forme_pharmaceutique"/>
+        android:hint="Forme_pharmaceutique" />
 
     <!-- EditText for entering Titulaires -->
     <EditText
         android:id="@+id/editTextTitulaires"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titulaires"/>
+        android:hint="Titulaires" />
 
     <!-- EditText for entering Denomination_substance -->
     <EditText
         android:id="@+id/editTextDenominationSubstance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Denomination_substance"/>
+        android:hint="Denomination_substance" />
 
     <!-- Spinner for selecting Voies_dadministration -->
     <Spinner
         android:id="@+id/spinnerVoiesAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Voies_dadministration"/>
+        android:hint="Voies_dadministration" />
 
     <!-- Button to trigger the search -->
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rechercher"/>
+        android:text="Rechercher" />
 
     <!-- ListView to display the search results -->
     <ListView
         android:id="@+id/listViewResults"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+
+    </ListView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/deconnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="deconnectionUSER"
+        android:text="Deconnection" />
+
+        <Button
+            android:id="@+id/quitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Quitter"
+            android:text="Quitter" />
+    </LinearLayout>
 </LinearLayout>
 
