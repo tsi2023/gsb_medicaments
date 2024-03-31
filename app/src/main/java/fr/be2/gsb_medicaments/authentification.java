@@ -17,7 +17,7 @@ import java.security.SecureRandom;
 public class authentification extends AppCompatActivity {
 private EditText codeV,mykey;
 private Button btnValiderCodeV, btnValiderCle;
-private LinearLayout layoutCle;
+LinearLayout layoutCle;
 String myRandomKey;
 private static final String PREF_NAME = "UserPrefs";
 private static final String KEY_USER_STATUS = "userStatus";
@@ -35,17 +35,17 @@ private static final String KEY_USER_STATUS = "userStatus";
     }
     public void AfficheLayout(View v){
 
-        layoutCle.setVisibility(View.VISIBLE);
         myRandomKey = genererChaineAleatoire(5);
-        Log.d("APPLI", "mykey"+ myRandomKey);
+       // Log.d("APPLI", "mykey"+ myRandomKey);
         String codeVis = codeV.getText().toString();
 
         // Vous pouvez maintenant utiliser la méthode sendKeyByEmail
         // avec le codeV, secureKey, et token comme paramètres
-        String secureKey = "votre_secureKey";
+        String secureKey = myRandomKey;
         String token = SECURETOKEN;
         SendKeyTask sendKeyTask = new SendKeyTask(getApplicationContext());
         sendKeyTask.execute(codeVis, secureKey, token);
+        layoutCle.setVisibility(View.VISIBLE);
 
     }
     private String genererChaineAleatoire(int longueur) {
