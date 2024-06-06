@@ -31,6 +31,7 @@ public class MedicamentAdapter extends ArrayAdapter<Medicament> {
         TextView tvVoiesAdmin = convertView.findViewById(R.id.tvVoiesAdmin);
         TextView tvTitulaires = convertView.findViewById(R.id.tvTitulaires);
         TextView tvStatutAdministratif = convertView.findViewById(R.id.tvStatutAdministratif);
+        TextView tvNbMolegule = convertView.findViewById(R.id.nbmolegule);
 
         tvCodeCIS.setText(String.valueOf(medicament.getCodeCIS()));
         tvDenomination.setText(medicament.getDenomination());

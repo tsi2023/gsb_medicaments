@@ -36,7 +36,7 @@ private static final String KEY_USER_STATUS = "userStatus";
     public void AfficheLayout(View v){
 
         myRandomKey = genererChaineAleatoire(5);
-       // Log.d("APPLI", "mykey"+ myRandomKey);
+       Log.d("APPLI", "mykey"+ myRandomKey);
         String codeVis = codeV.getText().toString();
 
         // Vous pouvez maintenant utiliser la méthode sendKeyByEmail

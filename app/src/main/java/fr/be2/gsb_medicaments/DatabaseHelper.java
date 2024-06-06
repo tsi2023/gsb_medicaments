@@ -145,6 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 medicament.setVoiesAdmin(voiesAdminMedicament);
                 medicament.setTitulaires(titulairesMedicament);
                 medicament.setStatutAdministratif(StatutAdministratifMedicament);
+                medicament.setNbMolecules(getNombreMolecules(codeCIS));
 
 
                 // Ajouter l'objet Medicament à la liste
@@ -161,7 +162,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return medicamentList;
     }
+    public List<String> getCompositionMedicament(int codeCIS) {
+        List<String> compositionList = new ArrayList<>();
 
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CIS_compo_bdpm WHERE Code_CIS = ?", new String[]{String.valueOf(codeCIS)});
+        int i=0;
+        if (cursor.moveToFirst()) {
+            do {
+                i++;
+                String substance = cursor.getString(cursor.getColumnIndex("Denomination_substance"));
+                String dosage = cursor.getString(cursor.getColumnIndex("Dosage_substance"));
+                compositionList.add(i+":"+substance + "(" + dosage + ")");
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return compositionList;
+    }
     private void copydatabase() {
 
         final String outFileName = DATABASE_PATH + DATABASE_NAME;
@@ -227,5 +247,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(normalized).replaceAll("");
     }
+    public int getNombreMolecules (int CodeCIS ) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor curseur = db.rawQuery(" SELECT count (*) FROM CIS_compo_bdpm WHERE Code_CIS = ? ", new String[]{String.valueOf(CodeCIS)});
+        int NbMolecules = 0;
+        if (curseur.moveToFirst()) {
+            NbMolecules = curseur.getInt(0);
 
+        }
+        curseur.close();
+        return NbMolecules;
+    }
+    public List<String> getPresentationMedicament (int codeCIS) {
+        List<String> presentationList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CIS_CIP_bdpm WHERE Code_CIS = ?", new String[]{String.valueOf(codeCIS)});
+        int i=0;
+        if (cursor.moveToFirst()) {
+            do {
+                i++;
+                String presentation = cursor.getString(cursor.getColumnIndex("Libelle_presentation"));
+                presentationList.add( +i+":"+presentation );
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return presentationList;
+    }
 }

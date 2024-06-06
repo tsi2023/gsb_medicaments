@@ -134,13 +134,35 @@ public class MainActivity extends AppCompatActivity {
         //System.exit(0);
     }
     private void afficherCompositionMedicament(Medicament medicament) {
-        // Ici, vous pouvez implémenter la logique pour afficher la composition du médicament
-        // Vous pouvez utiliser une boîte de dialogue, une nouvelle activité ou une autre méthode selon vos besoins.
-        // Par exemple, une boîte de dialogue simple pour afficher la composition :
+        List<String> composition = dbHelper.getCompositionMedicament(medicament.getCodeCIS());
+        List<String> presentation = dbHelper.getPresentationMedicament(medicament.getCodeCIS());
 
+        // Afficher la composition du médicament dans une boîte de dialogue ou autre méthode d'affichage
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Composition de " + medicament.getDenomination());
-        builder.setMessage("Code CIS: " + medicament.getCodeCIS() + "\n");
+        builder.setTitle("Composition de " + medicament.getCodeCIS()+ medicament.getDenomination());
+        StringBuilder compositionText = new StringBuilder();
+
+        if (composition.isEmpty()) {
+            compositionText.append("Pas de composition").append("\n");
+
+          } else {
+
+            for (String item : composition) {
+                compositionText.append(item).append("\n");
+            }
+
+        }
+        if (presentation.isEmpty()) {
+            compositionText.append("Pas de composition").append("\n");
+
+        } else {
+            compositionText.append("Presentation :");
+            for (String item : presentation) {
+                compositionText.append(item).append("\n");
+            }
+
+        }
+        builder.setMessage(compositionText.toString());
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

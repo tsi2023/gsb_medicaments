@@ -42,6 +42,13 @@
         android:layout_height="wrap_content"
         android:hint="Voies_dadministration" />
 
+    <!-- EditText for entering Nombre_Molegule -->
+    <EditText
+        android:id="@+id/nbmolegule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre_Molegule" />
+
     <!-- Button to trigger the search -->
     <Button
         android:id="@+id/btnSearch"
